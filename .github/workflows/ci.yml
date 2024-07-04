@@ -36,15 +36,15 @@ jobs:
                 poetry install
             
 
-            - name: run tests
+            - name: Run tests
               run: |
                 poetry run pytest
 
 
-            - name: run mypy
+            - name: Run mypy
               run: |
                 poetry run mypy ./
 
-            - name: run ruff
+            - name: Run ruff
               run: |
                     poetry run ruff check ./fastapi_tema
