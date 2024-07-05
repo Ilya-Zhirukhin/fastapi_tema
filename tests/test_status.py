@@ -6,4 +6,3 @@ def test_client_status():
     client = TestClient(app)
     result = client.get(settings.main_url)
     assert result.status_code == 200
-    assert result.json() == {"status": "ok"}

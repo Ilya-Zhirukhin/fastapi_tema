@@ -1,0 +1,140 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header-bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+main {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+}
+
+.result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--result-bg);
+    border-radius: 5px;
+}
+
+:root {
+    --bg-color: #D7B37C;
+    --text-color: #000000;
+    --header-bg: #D7B37C;
+    --button-bg: #000000;
+    --button-text: #D7B37C;
+    --button-hover-bg: #000000;
+    --input-border: #D7B37C;
+    --result-bg: #D7B37C;
+}
+
+.dark-theme {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --header-bg: #333333;
+    --button-bg: #ffc107;
+    --button-text: #000000;
+    --button-hover-bg: #e0a800;
+    --input-border: #6c757d;
+    --result-bg: #343a40;
+}
+
+
+
+#theme-toggle {
+    cursor: pointer;
+    font-size: 3rem;
+    transition: color 0.3s;
+}
+
+#theme-toggle:hover {
+    color: var(--button-hover-bg);
+}
+
+
+
+
+.loader {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #333;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+.error {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+}
