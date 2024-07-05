@@ -31,13 +31,13 @@ from pydantic import BaseModel
 from typing import List
 # from .config import web3, token_contract
 # import requests
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 # import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from .settings import settings
 
-load_dotenv()
+# load_dotenv()
 
 app = FastAPI()
 
