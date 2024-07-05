@@ -35,7 +35,7 @@ from typing import List
 # import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from .settings import Settings_my
+from .settings import settings
 
 # load_dotenv()
 
@@ -49,7 +49,7 @@ class AddressRequest(BaseModel):
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get(Settings_my.main_url, response_class=FileResponse)
+@app.get(settings.main_url, response_class=FileResponse)
 async def read_root():
     return "static/index.html"
 
