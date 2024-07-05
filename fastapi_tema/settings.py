@@ -3,7 +3,7 @@
 
 from pydantic import BaseSettings 
 
-class Settings(BaseSettings):
+class Settings_my(BaseSettings):
     """_summary_
 
     Args:
@@ -12,4 +12,4 @@ class Settings(BaseSettings):
     main_url: str = "/"
     
     
-settings = Settings()
+settings = Settings_my()
