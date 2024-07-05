@@ -26,13 +26,13 @@
 
 
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
 # from .config import web3, token_contract
-import requests
+# import requests
 from dotenv import load_dotenv
-import os
+# import os
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from .settings import settings
