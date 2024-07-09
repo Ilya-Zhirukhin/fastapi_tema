@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient 
-from fastapi_tema.main import app
-from fastapi_tema.settings import settings
+from fastapi_tema.aplication.main import app
+from fastapi_tema.aplication.settings import settings
 
 def test_client_status():
     client = TestClient(app)
