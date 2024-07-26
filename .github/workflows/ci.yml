@@ -3,68 +3,61 @@ name: Main CI
 on: [push]
 
 jobs:
-    run_tests:
-        runs-on: ubuntu-latest
+  run_tests:
+    runs-on: ubuntu-latest
 
+    environment: tests
 
-        environment: tests
+    steps:
+      - uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.11
 
-        env:
-            MAIN_URL: ${{ vars.MAIN_URL }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
 
-        steps:
-            - uses: actions/checkout@v3
+      - name: Install project dependencies
+        run: |
+          poetry install
 
-            - name: Set up Python
-              uses: actions/setup-python@v3
-              with:
-                python-version: 3.9.13
+      - name: Set up Docker Compose
+        run: |
+          docker-compose -f docker-compose-local.yaml up -d
 
-            - name: Install dependecies
-              run: |
-                python -m pip install --upgrade pip
+      - name: Wait for the database to be ready
+        run: |
+          sleep 10  # Убедитесь, что база данных готова к подключениям
 
+      - name: Run tests
+        run: |
+          poetry run pytest
 
-            - name: Install poetry
-              run: |
-                pip install poetry
+      - name: Run mypy
+        run: |
+          poetry run mypy ./
 
+      - name: Run ruff
+        run: |
+          poetry run ruff check ./
 
-            - name: Install project
-              run: |
-                poetry install
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs: [run_tests]
 
+    steps:
+      - name: Login to Docker
+        run: echo ${{secrets.DOCKER_TOKEN}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
 
-            - name: Run tests
-              run: |
-                poetry run pytest
+      - uses: actions/checkout@v3
 
+      - name: Build the Docker image
+        run: docker build -t ${{vars.DOCKER_PROJECT}}:${GITHUB_REF_NAME} -f Dockerfile .
 
-            - name: Run mypy
-              run: |
-                poetry run mypy ./
-
-            - name: Run ruff
-              run: |
-                    poetry run ruff check ./
-
-    build:
-        runs-on: ubuntu-latest
-
-        if: github.ref == 'refs/heads/master'
-
-
-        needs: [run_tests]
-
-        steps:
-        - name: Login to Docker
-          run: echo ${{secrets.DOCKER_TOKEN}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
-
-        - uses: actions/checkout@v3
-
-        - name: Build the Docker image
-          run: docker build -t ${{vars.DOCKER_PROJECT}}:${GITHUB_REF_NAME} -f Dockerfile .
-
-        - name: Push image to docker
-          run: docker push ${{vars.DOCKER_PROJECT}}:${GITHUB_REF_NAME}
+      - name: Push image to Docker
+        run: docker push ${{vars.DOCKER_PROJECT}}:${GITHUB_REF_NAME}
