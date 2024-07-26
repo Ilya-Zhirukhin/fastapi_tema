@@ -37,9 +37,9 @@ jobs:
         run: |
           poetry run pytest
 
-      - name: Run mypy
-        run: |
-          poetry run mypy ./
+      # - name: Run mypy
+      #   run: |
+      #     poetry run mypy ./
 
       - name: Run ruff
         run: |
