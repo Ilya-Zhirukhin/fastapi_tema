@@ -2,23 +2,23 @@ name: Main CI
 
 on: [push]
 
-jobs: 
+jobs:
     run_tests:
         runs-on: ubuntu-latest
-        
+
 
         environment: tests
 
 
         env:
             MAIN_URL: ${{ vars.MAIN_URL }}
-        
+
         steps:
             - uses: actions/checkout@v3
-            
+
             - name: Set up Python
               uses: actions/setup-python@v3
-              with: 
+              with:
                 python-version: 3.11.2
 
             - name: Install dependecies
@@ -28,13 +28,13 @@ jobs:
 
             - name: Install poetry
               run: |
-                pip install poetry 
+                pip install poetry
 
-                
+
             - name: Install project
               run: |
                 poetry install
-            
+
 
             - name: Run tests
               run: |
@@ -53,14 +53,14 @@ jobs:
         runs-on: ubuntu-latest
 
         if: github.ref == 'refs/heads/master'
-        
+
 
         needs: [run_tests]
 
         steps:
         - name: Login to Docker
           run: echo ${{secrets.DOCKER_TOKEN}} | docker login -u ${{secrets.DOCKER_LOGIN}} --password-stdin
-        
+
         - uses: actions/checkout@v3
 
         - name: Build the Docker image
@@ -68,6 +68,3 @@ jobs:
 
         - name: Push image to docker
           run: docker push ${{vars.DOCKER_PROJECT}}:${GITHUB_REF_NAME}
-
-
-
