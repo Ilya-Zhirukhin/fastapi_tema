@@ -15,7 +15,7 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 //     const address = document.getElementById('address').value;
 //     const loader = document.getElementById('balance-loader');
 //     loader.style.display = 'inline-block';
-    
+
 //     try {
 //         const response = await fetch(`/get_balance?address=${address}`);
 //         const data = await response.json();
@@ -27,14 +27,14 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 //     } catch (error) {
 //         console.error('Error:', error);
 //     }
-    
+
 //     loader.style.display = 'none';
 // }
 
 // async function getTokenInfo() {
 //     const loader = document.getElementById('token-info-loader');
 //     loader.style.display = 'inline-block';
-    
+
 //     try {
 //         const response = await fetch('/get_token_info');
 //         if (!response.ok) {
@@ -56,7 +56,7 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 //             </div>
 //         `;
 //     }
-    
+
 //     loader.style.display = 'none';
 // }
 
@@ -65,7 +65,7 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 //     const n = document.getElementById('top-n').value;
 //     const loader = document.getElementById('top-addresses-loader');
 //     loader.style.display = 'inline-block';
-    
+
 //     try {
 //         const response = await fetch(`/get_top?n=${n}`);
 //         if (!response.ok) {
@@ -89,6 +89,6 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
 //             </div>
 //         `;
 //     }
-    
+
 //     loader.style.display = 'none';
 // }

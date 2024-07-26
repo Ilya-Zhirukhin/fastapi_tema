@@ -1,0 +1,29 @@
+version: "3.0"
+services:
+  db:
+    container_name: "postgres_fastapi_tema_ilya"
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres_fastapi_tema_ilya
+      - POSTGRES_PASSWORD=postgres_fastapi_tema_ilya
+      - POSTGRES_DB=postgres_fastapi_tema_ilya
+    ports:
+      - "5432:5432"
+    networks:
+      - custom
+  db_test:
+    container_name: "postgres_fastapi_tema_ilya_test"
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres_fastapi_tema_ilya_test
+      - POSTGRES_PASSWORD=postgres_fastapi_tema_ilya_test
+      - POSTGRES_DB=postgres_fastapi_tema_ilya_test
+    ports:
+      - "5433:5432"
+    networks:
+      - custom
+networks:
+  custom:
+    driver: bridge
