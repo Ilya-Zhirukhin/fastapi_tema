@@ -17,6 +17,7 @@ from fastapi_tema.db.db_session import get_db
 from fastapi_tema.user.user_entity import PortalRole
 from fastapi_tema.user.utils import create_access_token
 
+
 CLEAN_TABLES = [
     "users",
 ]
