@@ -1,19 +1,23 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.3.0
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.11.32
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
--   repo: https://github.com/psf/black
-    rev: 22.3.0
+      - id: uv-lock
+  - repo: local
     hooks:
-    -   id: black
--   repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.278
-    hooks:
-    -   id: ruff
--   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.3.6
-    hooks:
-    -   id: reorder-python-imports
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy
+        entry: uv run mypy
+        language: system
+        types: [python]
+        pass_filenames: false
